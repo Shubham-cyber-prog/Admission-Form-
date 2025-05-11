@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 10px 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-submit:hover::before {
+            left: 100%;
+        }
+        
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .table thead {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+        }
+        
+        .table th {
+            font-weight: 600;
+        }
+        
+        .table-hover tbody tr:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .action-btn {
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .btn-edit {
+            color: var(--primary-color);
+        }
+        
+        .btn-delete {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header text-center">
+        <div class="container">
+            <h1><i class="fas fa-user-graduate me-2"></i>Student Admission Form</h1>
+            <p class="lead mt-3">Fill out the form below to apply for admission</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Admission Form -->
+        <div class="form-container">
+            <form id="admissionForm">
+                <div class="row g-3">
+                    <!-- Personal Information -->
+                    <div class="col-md-6">
+                        <h4 class="mb-4 text-primary"><i class="fas fa-user-circle me-2"></i>Personal Information</h4>
+                        
+                        <div class="mb-3">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Gender</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="Male" checked>
+                                <label class="form-check-label" for="male">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                                <label class="form-check-label" for="female">Female</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
+                                <label class="form-check-label" for="other">Other</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div class="col-md-6">
+                        <h4 class="mb-4 text-primary"><i class="fas fa-address-book me-2"></i>Contact Information</h4>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <textarea class="form-control" id="address" rows="3" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Academic Information -->
+                    <div class="col-12">
+                        <h4 class="mb-4 text-primary"><i class="fas fa-book me-2"></i>Academic Information</h4>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="course" class="form-label">Course Applying For</label>
+                                <select class="form-select" id="course" required>
+                                    <option value="" selected disabled>Select Course</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Electrical Engineering">Electrical Engineering</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Business Administration">Business Administration</option>
+                                    <option value="Medicine">Medicine</option>
+                                    <option value="Law">Law</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="qualification" class="form-label">Highest Qualification</label>
+                                <select class="form-select" id="qualification" required>
+                                    <option value="" selected disabled>Select Qualification</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                    <option value="Master's Degree">Master's Degree</option>
+                                    <option value="PhD">PhD</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="year" class="form-label">Year of Passing</label>
+                                <input type="number" class="form-control" id="year" min="1900" max="2032" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="col-12 text-center mt-4">
+                        <button type="submit" class="btn btn-submit btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>Submit Application
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Display Submitted Data -->
+        <div class="table-container">
+            <h4 class="mb-4 text-primary"><i class="fas fa-table me-2"></i>Submitted Applications</h4>
+            
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="submittedData">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Course</th>
+                            <th>Qualification</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('admissionForm');
+            const tableBody = document.querySelector('#submittedData tbody');
+            let submissions = [];
+            let counter = 1;
+            
+            // Handle form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const dob = document.getElementById('dob').value;
+                const gender = document.querySelector('input[name="gender"]:checked').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const course = document.getElementById('course').value;
+                const qualification = document.getElementById('qualification').value;
+                const year = document.getElementById('year').value;
+                
+                // Create submission object
+                const submission = {
+                    id: counter++,
+                    firstName,
+                    lastName,
+                    dob,
+                    gender,
+                    email,
+                    phone,
+                    address,
+                    course,
+                    qualification,
+                    year
+                };
+                
+                // Add to submissions array
+                submissions.push(submission);
+                
+                // Update table
+                updateTable();
+                
+                // Reset form
+                form.reset();
+                
+                // Show success animation
+                const submitBtn = document.querySelector('.btn-submit');
+                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Submitted!';
+                submitBtn.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Submit Application';
+                    submitBtn.style.background = 'linear-gradient(135deg, var(--primary-color), var(--secondary-color))';
+                }, 2000);
+            });
+            
+            // Update the table with submitted data
+            function updateTable() {
+                // Clear existing rows
+                tableBody.innerHTML = '';
+                
+                // Add each submission as a row
+                submissions.forEach((submission, index) => {
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td>${submission.id}</td>
+                        <td>${submission.firstName} ${submission.lastName}</td>
+                        <td>${submission.email}</td>
+                        <td>${submission.phone}</td>
+                        <td>${submission.course}</td>
+                        <td>${submission.qualification}</td>
+                        <td>
+                            <button class="btn btn-sm btn-edit action-btn" onclick="editSubmission(${index})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-delete action-btn" onclick="deleteSubmission(${index})">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    `;
+                    
+                    tableBody.appendChild(row);
+                });
+            }
+            
+            // Edit submission (placeholder for actual implementation)
+            window.editSubmission = function(index) {
+                alert(`Editing submission #${submissions[index].id}\n\nThis would open an edit form in a real application.`);
+            };
+            
+            // Delete submission
+            window.deleteSubmission = function(index) {
+                if (confirm('Are you sure you want to delete this submission?')) {
+                    submissions.splice(index, 1);
+                    updateTable();
+                }
+            };
+        });
+    </script>
+</body>
+</html>
